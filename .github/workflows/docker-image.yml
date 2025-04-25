@@ -25,5 +25,5 @@ jobs:
 
           - name: 'Build Inventory Image'
             run: |
-              docker build . --tag ghcr.io/romaxa55/fregate_webhook:5.30.0
-              docker push ghcr.io/romaxa55/v2ray:5.30.0
+              docker build . --tag ghcr.io/romaxa55/v2ray-helm-chart/v2ray:5.30.0
+              docker push ghcr.io/romaxa55/v2ray-helm-chart/v2ray:5.30.0
