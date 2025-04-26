@@ -11,5 +11,9 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: {{ .Values.service.wsPort | default 44932 }}
+      targetPort: 44932
+      protocol: TCP
+      name: ws
   selector:
     {{- include "v2ray.selectorLabels" . | nindent 4 }}

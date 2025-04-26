@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: config
-data:
-  config.json: |-
-{{ .Values.v2rayConfig | indent 4 }}
