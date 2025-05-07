@@ -37,7 +37,7 @@ spec:
               service:
                 name: {{ include "v2ray.fullname" $ }}
                 port:
-                  number: {{ $.Values.service.port }}
+                  number: {{ .port }}
           {{- end }}
     {{- end }}
 {{- end }}

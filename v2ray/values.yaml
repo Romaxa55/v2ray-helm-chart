@@ -26,6 +26,7 @@ service:
   type: ClusterIP
   port: 2053
   wsPort: 44932
+  subPort: 2096
 
 ingress:
   enabled: true
@@ -43,6 +44,11 @@ ingress:
         - path: /
           pathType: Prefix
           port: 44932
+    - host: subscription.rubystay.vn
+      paths:
+        - path: /
+          pathType: Prefix
+          port: 2096
 
   tls:
     - secretName: admin-rubystay-tls
@@ -51,6 +57,9 @@ ingress:
     - secretName: ws-rubystay-tls
       hosts:
         - ws.rubystay.vn
+    - secretName: subscription-rubystay-tls
+      hosts:
+        - subscription.rubystay.vn
 
 resources: {}
 
@@ -93,7 +102,7 @@ affinity: {}
 
 persistence:
   enabled: true
-  storageClass: "nfs-sc"  # здесь укажешь свой класс
+  storageClass: "longhorn"  # здесь укажешь свой класс
   db:
     size: 1Gi
   cert:

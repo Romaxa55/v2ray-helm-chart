@@ -15,5 +15,9 @@ spec:
       targetPort: 44932
       protocol: TCP
       name: ws
+    - port: {{ .Values.service.subPort | default 2096 }}
+      targetPort: 2096
+      protocol: TCP
+      name: subport
   selector:
     {{- include "v2ray.selectorLabels" . | nindent 4 }}
