@@ -1,0 +1,19 @@
+tunnel: your-tunnel-id
+credentials-file: /etc/cloudflared/cert.pem
+
+ingress:
+  # Admin panel
+  - hostname: admin.yourdomain.com
+    service: http://10.0.0.1:2053
+    path: /adm
+  
+  # WebSocket
+  - hostname: ws.yourdomain.com  
+    service: http://10.0.0.1:44932
+  
+  # Subscription
+  - hostname: sub.yourdomain.com
+    service: http://10.0.0.1:2096
+  
+  # Catch-all rule
+  - service: http_status:404

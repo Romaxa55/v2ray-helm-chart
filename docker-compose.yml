@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  v2ray:
+    image: ghcr.io/mhsanaei/3x-ui:v2.5.7
+    container_name: v2ray-ui
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:2053:2053"    # Admin panel только на localhost
+      - "127.0.0.1:44932:44932"  # WebSocket только на localhost
+      - "127.0.0.1:2096:2096"    # Subscription только на localhost
+    volumes:
+      - v2ray_db:/etc/x-ui
+      - v2ray_cert:/root/cert
+    environment:
+      - TZ=Asia/Ho_Chi_Minh
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:2053/adm/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - v2ray_network
+
+volumes:
+  v2ray_db:
+    driver: local
+  v2ray_cert:
+    driver: local
+
+networks:
+  v2ray_network:
+    driver: bridge
